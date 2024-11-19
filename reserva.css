@@ -121,13 +121,75 @@ img {
     margin-bottom: 20px;
 }
 
-span {
+/* span {
     color: white;
     background-color: black;
     border-radius: 5px;
     padding: 5px;
 
+} */
+
+.txt-animado{
+    font-size: 80px;
+    font-weight: 600;
+    font-family: sans-serif;
 }
+
+.txt-animado span {
+    position: relative;
+}
+
+.txt-animado span::before{
+    content: "";
+    color: black;
+    animation: palavras 20s infinite;
+}
+
+.txt-animado span::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    border-left: 2px solid black;
+    right: -10px;
+    opacity: 1;
+    animation: cursor .8s infinite, digita 20s steps(80) infinite;
+    width: calc(100% + 15px);
+    background-color: white;
+}
+
+@keyframes digita {
+    10%, 15%, 35%, 50%, 55%, 70%, 75%, 90%, 95%{
+        width: 0;
+    }
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85%{
+        width: calc(100% + 15px);
+    }
+}
+
+@keyframes cursor {
+    0%{
+        border-left: 2px solid white;
+    }
+}
+
+@keyframes palavras {
+    0%,20%{
+        content: "ACESSO";
+    }
+    21%,40%{
+        content: "SEGURO";
+    }
+    41%,60%{
+        content: "INTELIGENTE";
+    }
+    61%,80%{
+        content: "INOVADOR";
+    }
+    81%,100%{
+        content: "KEY SAFE";
+    }
+}
+
 
 /* .mobile-menu {
     cursor: pointer;
