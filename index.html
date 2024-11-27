@@ -190,14 +190,12 @@
 
 
 
-    <!-- <div class="processo-text">
+    <div class="processo-text">
         <h2>Vídeo demonstrativo</h2>
     </div>
     <div class="youtube">
-        <iframe width="800" height="500" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-
-        </iframe>
-    </div> -->
+            <video src="./assets/img/Projeto KeySafe.mp4" controls width="800" height="500"></video>
+    </div>
 
 
     <section class="components-container">
@@ -262,27 +260,52 @@
         </table>
     </section>
 
-   
+
     <div class="code-txt">
         <h1>Códigos mais importantes</h1>
     </div>
     <div class="code">
         <div class="code-card">
-            <h1>2. Trecho de Código</h1>
-            <p>Aqui está um exemplo de como criar uma fechadura eletrônica com Arduino usando RFID, teclado e LCD:</p>
+            <h1>1. Inicialização e Configurações</h1>
+            <p>Aqui está um exemplo de como inicializar os dispositivos do sistema, como RFID e LCD:</p>
 
-            <pre><code class="language-javascript">
-                #include <Keypad.h>
-                    char senha[5] = "1234"; 
-                    char entrada[5]; 
-                    int pos = 0;
-                    const byte linhas = 4, colunas = 4; 
-                    char teclas[linhas][colunas] = { 
-                    {'1', '2', '3', 'A'},
-                    {'4', '5', '6', 'B'},
-                    {'7', '8', '9', 'C'},
-                    {'*', '0', '#', 'D'}
-                    };
+            <pre><code class="language-cpp">
+                    #include &lt;Wire.h&gt;
+                    #include &lt;SPI.h&gt;
+                    #include &lt;MFRC522.h&gt;
+                    #include &lt;LiquidCrystal_I2C.h&gt;
+                
+                    #define SS_PIN 10
+                    #define RST_PIN 9
+                    
+                    MFRC522 rfid(SS_PIN, RST_PIN);
+                    LiquidCrystal_I2C lcd(0x27, 16, 2);                     
+            </code></pre>
+
+            <p>Para mais detalhes e o código completo, acesse o repositório no <a
+                    href="https://github.com/seu-repositorio-exemplo" target="_blank">GitHub</a>.</p>
+        </div>
+
+        <div class="code-card">
+            <h1>2. Configuração do Tecladoo</h1>
+            <p>Aqui está um exemplo de como criar um teclado matricial para capturar entradas:</p>
+
+            <pre><code class="language-cpp">
+                const byte ROWS = 4;  
+                const byte COLS = 3;
+                
+                char hexaKeys[ROWS][COLS] = {
+                  {'1', '2', '3'},
+                  {'4', '5', '6'},
+                  {'7', '8', '9'},
+                  {'*', '0', '#'}
+                };
+                
+                byte rowPins[ROWS] = {8, 7, 6, 5};  
+                byte colPins[COLS] = {4, 3, 2};
+                
+                Keypad customKeypad = Keypad(makeKeymap(hexaKeys),
+                                             rowPins, colPins, ROWS, COLS);                               
         </code></pre>
 
             <p>Para mais detalhes e o código completo, acesse o repositório no <a
@@ -290,21 +313,15 @@
         </div>
 
         <div class="code-card">
-            <h1>2. Trecho de Código</h1>
-            <p>Aqui está um exemplo de como criar uma fechadura eletrônica com Arduino usando RFID, teclado e LCD:</p>
+            <h1>3. Gerenciamento de Senha</h1>
+            <p>Aqui está como configurar a senha e controlar tentativas de acesso:</p>
 
-            <pre><code class="language-javascript">
-                #include <Keypad.h>
-                    char senha[5] = "1234"; 
-                    char entrada[5]; 
-                    int pos = 0;
-                    const byte linhas = 4, colunas = 4; 
-                    char teclas[linhas][colunas] = { 
-                    {'1', '2', '3', 'A'},
-                    {'4', '5', '6', 'B'},
-                    {'7', '8', '9', 'C'},
-                    {'*', '0', '#', 'D'}
-                    };
+            <pre><code class="language-cpp">
+                const char password[4] = {'1', '2', '3', '4'}; // Senha
+                char input[5]; // Buffer para entrada de senha
+                int position = 0; // Posição atual na senha
+                int attemptCount = 0; // Tentativas erradas
+                bool lockedByAttempts = false; // Sistema bloqueado
         </code></pre>
 
             <p>Para mais detalhes e o código completo, acesse o repositório no <a
@@ -312,43 +329,33 @@
         </div>
 
         <div class="code-card">
-            <h1>2. Trecho de Código</h1>
-            <p>Aqui está um exemplo de como criar uma fechadura eletrônica com Arduino usando RFID, teclado e LCD:</p>
+            <h1>4. Função Principal</h1>
+            <p>Trecho que verifica o cartão RFID e processa entradas do teclado:</p>
 
             <pre><code class="language-javascript">
-                #include <Keypad.h>
-                    char senha[5] = "1234"; 
-                    char entrada[5]; 
-                    int pos = 0;
-                    const byte linhas = 4, colunas = 4; 
-                    char teclas[linhas][colunas] = { 
-                    {'1', '2', '3', 'A'},
-                    {'4', '5', '6', 'B'},
-                    {'7', '8', '9', 'C'},
-                    {'*', '0', '#', 'D'}
-                    };
-        </code></pre>
-
-            <p>Para mais detalhes e o código completo, acesse o repositório no <a
-                    href="https://github.com/seu-repositorio-exemplo" target="_blank">GitHub</a>.</p>
-        </div>
-
-        <div class="code-card">
-            <h1>2. Trecho de Código</h1>
-            <p>Aqui está um exemplo de como criar uma fechadura eletrônica com Arduino usando RFID, teclado e LCD:</p>
-
-            <pre><code class="language-javascript">
-                #include <Keypad.h>
-                    char senha[5] = "1234"; 
-                    char entrada[5]; 
-                    int pos = 0;
-                    const byte linhas = 4, colunas = 4; 
-                    char teclas[linhas][colunas] = { 
-                    {'1', '2', '3', 'A'},
-                    {'4', '5', '6', 'B'},
-                    {'7', '8', '9', 'C'},
-                    {'*', '0', '#', 'D'}
-                    };
+                void loop() {
+                    if (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial()) {
+                      // Verifica o UID do cartão
+                      if (checkUID(rfid.uid.uidByte)) {
+                        setLocked(false); // Desbloqueia
+                        lcd.clear();
+                        lcd.print("Access Granted");
+                        delay(3000);
+                      } else {
+                        lcd.clear();
+                        lcd.print("Access Denied");
+                        delay(3000);
+                      }
+                    }
+                  
+                    // Entrada via teclado se o sistema não estiver bloqueado
+                    if (!lockedByAttempts) {
+                      char customKey = customKeypad.getKey();
+                      if (customKey) {
+                        handleKeypadInput(customKey);
+                      }
+                    }
+                  }                  
         </code></pre>
 
             <p>Para mais detalhes e o código completo, acesse o repositório no <a
@@ -359,7 +366,7 @@
     <div class="dt">
         <h1>Passo a passo do projeto</h1>
         <p>Principais etapas realizadas para desenvolver e implementar a fechadura eletrônica:
- </p>
+        </p>
     </div>
     <div class="container-co">
         <div class="projects-grid">
@@ -654,7 +661,7 @@
                 <a href="#sobrenos">Sobre nós</a>
                 <a href="#contextualizacao">Contextualização</a>
                 <a href="#processo-de-trabalho">Processo de trabalho</a>
-                <a href="#depoimentos">Passo a passo do projeto</a>
+                <a href="#">Arduino, KeySafe, C++, Programação</a>
 
             </div>
 

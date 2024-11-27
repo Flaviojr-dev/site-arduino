@@ -921,6 +921,7 @@ iframe {
     gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 150px;
+    flex-direction: column;
 }
 
 .code-txt {
