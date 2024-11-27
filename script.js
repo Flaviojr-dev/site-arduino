@@ -1,5 +1,5 @@
 document.querySelector('.btn-container').addEventListener('click', () => {
-  alert('Ainda está em construção');
+  alert('SEJA BEM VINDO AO KEY SAFE!');
 });
 
 const carousel = document.querySelector('.carousel');
