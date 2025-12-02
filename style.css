@@ -219,23 +219,23 @@ img {
 
 @keyframes palavras {
     0%, 20% {
-        content: "ACESSO.";
+        content: "AUTOMATIZADO.";
     }
 
     21%, 40% {
-        content: "SEGURO.";
+        content: "CONECTADO.";
     }
 
     41%, 60% {
-        content: "INTELIGENTE.";
-    }
-
-    61%, 80% {
         content: "INOVADOR.";
     }
 
+    61%, 80% {
+        content: "DIGITAL.";
+    }
+
     81%, 100% {
-        content: "KEY SAFE.";
+        content: "GENIUS UNO.";
     }
 }
 
